@@ -90,7 +90,7 @@ bool _activate_proc(Proc *p, bool onalert)
         release_sched_lock();
         return false;
     }
-    if(p->state == SLEEPING || p->state == UNUSED || (p->state == DEEPSLEEPING && onalert)) {
+    if(p->state == SLEEPING || p->state == UNUSED || (p->state == DEEPSLEEPING && !onalert)) {
         p->state = RUNNABLE;
         insert_into_list(&listlock, &rq, &p->schinfo.rq);
     }
